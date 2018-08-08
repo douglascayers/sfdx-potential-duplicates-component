@@ -1,0 +1,23 @@
+<aura:component controller="dupe_FindDuplicatesController">
+
+    <c:lax context="{!this}"/>
+
+    <aura:method name="findDuplicates"
+                 action="{!c.onFindDuplicates}"
+                 access="public"
+                 description="Searches for duplicate records and returns the results">
+
+        <aura:attribute name="recordId"
+                        type="String"
+                        description="The record to find duplicates of"
+                        required="true"/>
+
+        <aura:attribute name="maxResults"
+                        type="Integer"
+                        default="5"
+                        description="The max number of duplicate results to return"
+                        required="false"/>
+
+    </aura:method>
+
+</aura:component>

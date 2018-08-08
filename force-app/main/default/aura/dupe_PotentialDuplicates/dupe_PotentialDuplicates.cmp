@@ -1,0 +1,51 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+
+    <c:dupe_FindDuplicates aura:id="findDuplicatesService"/>
+
+    <aura:attribute name="recordId"
+                    type="String"
+                    description="Provided by force:hasRecordId"/>
+
+    <aura:attribute name="showDuplicateRecords"
+                    type="Boolean"
+                    default="false"
+                    access="private"/>
+
+    <aura:attribute name="duplicateRecords"
+                    type="SObject[]"
+                    access="private"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/>
+
+    <lightning:card title="Potential Duplicates">
+
+        <aura:if isTrue="{!v.showDuplicateRecords}">
+
+            <!-- TODO use lightning:datatable -->
+            <!-- TODO leverage field describe info to show field labels -->
+            <div class="slds-p-around_large">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.duplicateRecords}" var="record">
+                            <tr>
+                                <td>{!record.Id}</td>
+                                <td>{!record.Name}</td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </aura:if>
+
+    </lightning:card>
+
+</aura:component>
